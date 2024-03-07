@@ -10,20 +10,19 @@ export interface CreateUserRequestBody {
   families_id:number;
 }
 
-export interface CreateArtistRequestBody {
-  nickname: string;
-  description?:string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  password: string;
-  role: string;
-  active?: Number;
-}
+
 
 export interface CreateFamiliesRequestBody {
   user_id: number;
   family_name: string
+  
+}
+export interface CreateTasksRequestBody {
+  familie_id: number;
+  name_task: string;
+  task_date: Date;
+  hour: string;
+  status: string;
   
 }
 

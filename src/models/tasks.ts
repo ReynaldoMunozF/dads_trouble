@@ -29,7 +29,7 @@ export class Tasks extends BaseEntity {
   hour!: string
  
   @Column()
-  status!: string
+  status?: string
 
   @Column()
   active?: Number;

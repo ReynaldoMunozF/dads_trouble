@@ -33,11 +33,14 @@ export class CreateTasks1709715865847  implements MigrationInterface {
             type: "varchar",
             length: "255",
           },
+         
           {
             name: "status",
-            type: "varchar",
-            length: "255",
-          },
+            type: "enum",
+            enum: ["active", "inactive"],
+            default: '"active"',
+            isNullable:true,
+        },
 
           {
             name: "active",

@@ -1,9 +1,7 @@
 import express from "express";
 import { UserController } from "../controllers/UserController";
 //import { AppointmentController } from "../controllers/AppointmentController";
-import { auth } from "../middleware/auth";
-import { authArtist } from "../middleware/authArtist";
-import { isSuperAdmin } from "../middleware/isSuperAdmin";
+
 
 // -----------------------------------------------------------------------------
 
