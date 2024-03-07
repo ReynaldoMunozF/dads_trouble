@@ -25,7 +25,7 @@ export class FamiliesController implements Controller {
 
           select: {
             id: true,
-            user_id: true,
+          
             family_name:true,
           },
         }
@@ -99,7 +99,7 @@ export class FamiliesController implements Controller {
       const id = +req.params.id;
       const familiesRepository = AppDataSource.getRepository(Families);
       const families = await familiesRepository.findBy({
-        user_id: id,
+        id: id,
       });
 
       if (!families) {
@@ -111,7 +111,7 @@ export class FamiliesController implements Controller {
       res.status(200).json(families);
     } catch (error) {
       res.status(500).json({
-        message: "Error while getting appointments",
+        message: "Error while getting families",
       });
     }
   }
@@ -172,12 +172,12 @@ export class FamiliesController implements Controller {
       const newFamily = await familiesRepository.save(data);
       res.status(201).json({
         newFamily,
-        message: "appointment create successfully",
+        message: "family create successfully",
       });
     } catch (error: any) {
-      console.error("Error while creating Appointment:", error);
+      console.error("Error while creating family:", error);
       res.status(500).json({
-        message: "Error while creating Appointment",
+        message: "Error while creating family",
         error: error.message,
       });
     }

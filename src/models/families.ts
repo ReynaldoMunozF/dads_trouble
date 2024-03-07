@@ -8,8 +8,9 @@ import {
   ManyToOne,
   OneToMany,
 } from "typeorm";
-import { User } from "./User";
+
 import { Tasks } from "./tasks";
+import { User } from "./User";
 
 @Entity("families")
 export class Families {
@@ -17,11 +18,7 @@ export class Families {
   id?: number;
 
   @Column()
-  user_id!: number;
-
-  @Column()
   family_name?: string;
-  
 
   @CreateDateColumn()
   created_at?: Date;
@@ -29,13 +26,9 @@ export class Families {
   @UpdateDateColumn()
   updated_at?: Date;
 
-  @OneToMany(() => Tasks , (task) => task.families)
+  @OneToMany(() => Tasks, (task) => task.families)
   tasks?: Tasks[];
 
-  @ManyToOne(() => User, (user) => user.families)
-  @JoinColumn({ name: "user_id" })
-  user!: User;
-
- 
+  @OneToMany(() => User, (user) => user.families)
+  user?: User[];
 }
-

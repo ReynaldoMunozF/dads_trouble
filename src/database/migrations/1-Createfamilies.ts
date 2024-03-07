@@ -13,10 +13,6 @@ export class Createfamilies1709715865827 implements MigrationInterface {
             isGenerated: true,
             generationStrategy: "increment",
           },
-          {
-            name: "user_id",
-            type: "int",
-          },
 
           {
             name: "family_name",
@@ -35,15 +31,8 @@ export class Createfamilies1709715865827 implements MigrationInterface {
             onUpdate: "CURRENT_TIMESTAMP"
         },
         ],
-        foreignKeys: [
-            {
-              columnNames: ["user_id"],
-              referencedTableName: "users",
-              referencedColumnNames: ["id"],
-              onDelete: "CASCADE",
-            },
-           
-          ],
+        
+       
       }),
       true
     );

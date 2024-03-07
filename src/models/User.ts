@@ -5,6 +5,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn
 } from "typeorm";
 import {Families} from "./families"
 
@@ -12,6 +14,9 @@ import {Families} from "./families"
 export class User {
   @PrimaryGeneratedColumn()
   id?: number;
+
+  @Column()
+  families_id!: number;
 
   @Column()
   first_name!: string;
@@ -40,6 +45,7 @@ export class User {
   @Column()
   active?: Number;
 
-  @OneToMany(() => Families , (families) => families.user)
-  families?: Families[];
+  @ManyToOne(() => Families, (families) => families.user)
+  @JoinColumn({ name: "families_id" })
+  families?: Families;
 }

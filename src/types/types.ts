@@ -7,6 +7,7 @@ export interface CreateUserRequestBody {
   password: string;
   active?: Number;
   role: string;
+  families_id:number;
 }
 
 export interface CreateArtistRequestBody {

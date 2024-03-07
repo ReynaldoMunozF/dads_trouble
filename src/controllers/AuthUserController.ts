@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CreateUserRequestBody, LoginUserRequestBody, UserTokenData } from "../types/types";
 import { User } from "../models/User";
+import { Families } from "../models/families";
 import { AppDataSource } from "../database/data-source";
 import bcrypt from "bcrypt";
 import { StatusCodes } from "http-status-codes";
@@ -11,7 +12,7 @@ export class AuthUserController {
     req: Request<{}, {}, CreateUserRequestBody>,
     res: Response
   ): Promise<void | Response<any>> {
-    const { first_name, last_name, password, email, birthday,role } =
+    const { first_name, last_name, password, email, birthday,role,families_id } =
       req.body;
 
     const userRepository = AppDataSource.getRepository(User);
@@ -19,6 +20,7 @@ export class AuthUserController {
     try {
       const newUser: User = {
        
+        families_id,
         first_name,
         last_name,
         email,
