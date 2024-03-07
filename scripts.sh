@@ -71,6 +71,7 @@ npx typeorm entity:create ./src/models/User
 npx typeorm migration:create ./src/database/migrations/CreateUsers
 npx typeorm migration:create ./src/database/migrations/Createfamilies
 npx typeorm migration:create ./src/database/migrations/CreateTasks
+npx typeorm migration:create ./src/database/migrations/CreateRoles
 
 
 

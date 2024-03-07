@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 
-import { Families } from "./families";
+import { User } from "./User";
 
 
 
@@ -17,7 +17,7 @@ export class Tasks extends BaseEntity {
   id!: number;
 
   @Column()
-  families_id!: number;
+  users_id!: number;
 
   @Column()
   name_task!: string
@@ -34,9 +34,9 @@ export class Tasks extends BaseEntity {
   @Column()
   active?: Number;
 
-  @ManyToOne(() => Families, (families) => families.tasks)
-  @JoinColumn({ name: "families_id" })
-  families!: Families;
+  @ManyToOne(() => User, (user) => user.tasks)
+  @JoinColumn({ name: "user_id" })
+  user!: User;
 
 
 

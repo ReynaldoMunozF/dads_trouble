@@ -18,6 +18,10 @@ export class CreateUser1709715865837 implements MigrationInterface {
                   name: "families_id",
                   type: "int",
                 },
+               {
+                  name: "roles_id",
+                  type: "int",
+                },
               
                {
                   name: "first_name",
@@ -76,6 +80,12 @@ export class CreateUser1709715865837 implements MigrationInterface {
                {
                  columnNames: ["families_id"],
                  referencedTableName: "families",
+                 referencedColumnNames: ["id"],
+                 onDelete: "CASCADE",
+               },
+               {
+                 columnNames: ["roles_id"],
+                 referencedTableName: "roles",
                  referencedColumnNames: ["id"],
                  onDelete: "CASCADE",
                },

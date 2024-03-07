@@ -14,7 +14,7 @@ export class CreateTasks1709715865847  implements MigrationInterface {
             generationStrategy: "increment",
           },
           {
-            name: "families_id",
+            name: "users_id",
             type: "int",
           },
 
@@ -39,7 +39,7 @@ export class CreateTasks1709715865847  implements MigrationInterface {
             type: "enum",
             enum: ["active", "inactive"],
             default: '"active"',
-            isNullable:true,
+            
         },
 
           {
@@ -51,8 +51,8 @@ export class CreateTasks1709715865847  implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            columnNames: ["families_id"],
-            referencedTableName: "families",
+            columnNames: ["users_id"],
+            referencedTableName: "users",
             referencedColumnNames: ["id"],
             onDelete: "CASCADE",
           },

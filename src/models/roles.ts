@@ -9,16 +9,16 @@ import {
   OneToMany,
 } from "typeorm";
 
-import { Tasks } from "./tasks";
+
 import { User } from "./User";
 
-@Entity("families")
-export class Families {
+@Entity("roles")
+export class Roles {
   @PrimaryGeneratedColumn()
   id?: number;
 
   @Column()
-  family_name?: string;
+  name?: string;
 
   @CreateDateColumn()
   created_at?: Date;
@@ -26,6 +26,6 @@ export class Families {
   @UpdateDateColumn()
   updated_at?: Date;
 
-  @OneToMany(() => User, (user) => user.families)
+  @OneToMany(() => User, (user) => user.roles)
   user?: User[];
 }
