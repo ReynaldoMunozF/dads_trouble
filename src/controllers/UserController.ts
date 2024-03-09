@@ -24,7 +24,7 @@ export class UserController implements Controller {
           last_name: true,
           email: true,
           birthday: true,
-          role:true,
+          roles_id:true,
           created_at: true,
           
         },

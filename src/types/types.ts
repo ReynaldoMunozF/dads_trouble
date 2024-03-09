@@ -8,6 +8,7 @@ export interface CreateUserRequestBody {
   active?: Number;
   role: string;
   families_id:number;
+  roles_id:number;
 }
 
 
@@ -33,7 +34,7 @@ export interface LoginUserRequestBody {
 
 export interface UserTokenData {
   user_id: string;
-  role: string;
+  role: number;
  
  
 }

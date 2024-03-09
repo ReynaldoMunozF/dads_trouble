@@ -24,7 +24,7 @@ export class TasksController implements Controller {
         take: itemsPerPage,
         select: {
           id: true,
-          families_id: true,
+          users_id: true,
           task_date: true,
           hour:true,
           status:true,
@@ -47,7 +47,7 @@ export class TasksController implements Controller {
       const id = +req.params.id;
       const tasksRepository = AppDataSource.getRepository(Tasks);
       const tasks = await tasksRepository.findBy({
-        families_id: id,
+        users_id: id,
       });
 
       if (!tasks) {

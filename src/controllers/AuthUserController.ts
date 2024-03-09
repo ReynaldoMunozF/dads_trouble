@@ -12,7 +12,7 @@ export class AuthUserController {
     req: Request<{}, {}, CreateUserRequestBody>,
     res: Response
   ): Promise<void | Response<any>> {
-    const { first_name, last_name, password, email, birthday,role,families_id } =
+    const { first_name, last_name, password, email, birthday,roles_id,families_id } =
       req.body;
 
     const userRepository = AppDataSource.getRepository(User);
@@ -25,7 +25,7 @@ export class AuthUserController {
         last_name,
         email,
         birthday,
-        role,
+        roles_id,
         password: bcrypt.hashSync(password, 10),
       };
 
@@ -60,7 +60,7 @@ export class AuthUserController {
             select:{
               id :true,
               password: true,
-              role:true,
+              roles_id:true,
             }
           });
           if(!user){
@@ -80,7 +80,7 @@ export class AuthUserController {
 
          const tokenPayload: UserTokenData = {
             user_id: user.id?.toString() as string,
-            role: user.role,
+            role: user.roles_id,
             
          };
 
