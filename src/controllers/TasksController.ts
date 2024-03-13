@@ -26,7 +26,6 @@ export class TasksController implements Controller {
           id: true,
           users_id: true,
           task_date: true,
-          hour:true,
           status:true,
         },
       });

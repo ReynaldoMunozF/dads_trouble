@@ -18,18 +18,16 @@ export class FamiliesController implements Controller {
       let currentPage = page ? +page : 1;
       let itemsPerPage = skip ? +skip : 10;
 
-      const [allFamilies, count] = await familiesRepository.findAndCount(
-        {
-          skip: (currentPage - 1) * itemsPerPage,
-          take: itemsPerPage,
+      const [allFamilies, count] = await familiesRepository.findAndCount({
+        skip: (currentPage - 1) * itemsPerPage,
+        take: itemsPerPage,
 
-          select: {
-            id: true,
-          
-            family_name:true,
-          },
-        }
-      );
+        select: {
+          id: true,
+
+          family_name: true,
+        },
+      });
       res.status(200).json({
         count,
         skip: itemsPerPage,
@@ -98,17 +96,39 @@ export class FamiliesController implements Controller {
     try {
       const id = +req.params.id;
       const familiesRepository = AppDataSource.getRepository(Families);
-      const families = await familiesRepository.findBy({
-        id: id,
+      const families = await familiesRepository.find({
+        where: { id: id },
+
+        relations: {
+          user: true,
+          tasks:true,
+        },
+        select: {
+          family_name: true,
+          user: {
+            id:true,
+            first_name: true,
+            last_name: true,
+          },
+          tasks: {
+            id:true,
+            users_id:true,
+            name_task:true,
+            task_date:true,
+          },
+        },
       });
+    
 
       if (!families) {
         return res.status(404).json({
           message: "Families not found",
         });
       }
+      const family = families[0];
 
-      res.status(200).json(families);
+
+      res.status(200).json(family);
     } catch (error) {
       res.status(500).json({
         message: "Error while getting families",
@@ -116,51 +136,7 @@ export class FamiliesController implements Controller {
     }
   }
 
-  // async getByArtist(
-  //   req: Request,
-  //   res: Response
-  // ): Promise<void | Response<any>> {
-  //   try {
-  //     const id = +req.params.id;
-  //     const appointmentRepository = AppDataSource.getRepository(Appointment);
-  //     const [allAppointments, count] = await appointmentRepository.findAndCount(
-  //       {
-  //         // tattoo_artist_id: id,
-  //         where: { tattoo_artist_id: id },
 
-  //         relations: {
-  //           user: true,
-  //         },
-  //         select: {
-  //           tattoo_artist_id: true,
-  //           id: true,
-  //           appointment_date: true,
-  //           hour: true,
-  //           user: {
-  //             first_name: true,
-  //             last_name: true,
-  //             phone: true,
-  //           },
-  //         },
-  //       }
-  //     );
-
-  //     if (!allAppointments) {
-  //       return res.status(404).json({
-  //         message: "Appointment not found",
-  //       });
-  //     }
-
-  //     res.status(200).json({
-  //       count,
-  //       results: allAppointments,
-  //     });
-  //   } catch (error) {
-  //     res.status(500).json({
-  //       message: "Error while getting appointments",
-  //     });
-  //   }
-  // }
   async create(
     req: Request<{}, {}, CreateFamiliesRequestBody>,
 

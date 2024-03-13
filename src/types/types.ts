@@ -34,7 +34,8 @@ export interface LoginUserRequestBody {
 
 export interface UserTokenData {
   user_id: string;
-  role: number;
+  role: string;
+  families_id: string;
  
  
 }

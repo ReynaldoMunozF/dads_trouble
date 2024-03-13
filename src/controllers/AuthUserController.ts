@@ -61,6 +61,7 @@ export class AuthUserController {
               id :true,
               password: true,
               roles_id:true,
+              families_id:true,
             }
           });
           if(!user){
@@ -80,7 +81,8 @@ export class AuthUserController {
 
          const tokenPayload: UserTokenData = {
             user_id: user.id?.toString() as string,
-            role: user.roles_id,
+            role: user.roles_id?.toString() as string,
+            families_id: user.families_id?.toString() as string,
             
          };
 

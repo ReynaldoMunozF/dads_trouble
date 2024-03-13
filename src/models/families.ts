@@ -28,4 +28,7 @@ export class Families {
 
   @OneToMany(() => User, (user) => user.families)
   user?: User[];
+ 
+  @OneToMany(() => Tasks, (tasks) => tasks.families)
+  tasks ?: Tasks[];
 }
