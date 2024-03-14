@@ -28,8 +28,13 @@ export class CreateTasks1709715865847 implements MigrationInterface {
             length: "255",
           },
           {
-            name: "task_date",
-            type: "datetime",
+            name: "date",
+            type: "date",
+          },
+          {
+            name: "hour",
+            type: "varchar",
+            length: "255",
           },
 
           {

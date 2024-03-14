@@ -9,6 +9,7 @@ const tasksController = new TasksController();
 
 router.get("/", tasksController.getAll);
 router.get("/:id", tasksController.getById);
+router.get("/:id/:date", tasksController.getByIdAndDate);
 router.post("/",tasksController.create);
 router.patch("/:id", tasksController.update);
 router.delete("/:id", tasksController.delete);

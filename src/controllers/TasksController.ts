@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Tasks } from "../models/tasks";
 import { Families } from "../models/families";
+import { parse } from 'date-fns';
 
 
 import { AppDataSource } from "../database/data-source";
@@ -25,7 +26,8 @@ export class TasksController implements Controller {
         select: {
           id: true,
           users_id: true,
-          task_date: true,
+          date: true,
+          hour:true,
           status:true,
         },
       });
@@ -44,6 +46,8 @@ export class TasksController implements Controller {
   async getById(req: Request, res: Response): Promise<void | Response<any>> {
     try {
       const id = +req.params.id;
+     
+      console.log(id);
       const tasksRepository = AppDataSource.getRepository(Tasks);
       const tasks = await tasksRepository.findBy({
         users_id: id,
@@ -55,7 +59,11 @@ export class TasksController implements Controller {
         });
       }
 
-      res.status(200).json(tasks);
+      res.status(200).json({
+        tasks,
+        id,
+
+      });
     } catch (error) {
       res.status(500).json({
         message: "Error while getting tasks",
@@ -63,6 +71,39 @@ export class TasksController implements Controller {
     }
   }
 
+  async getByIdAndDate(req: Request, res: Response): Promise<void | Response<any>> {
+    try {
+      const id = +req.params.id;
+     
+      const dateString = req.params.date;
+    const date = parse(dateString, 'yyyy-MM-dd', new Date());
+      
+      const tasksRepository = AppDataSource.getRepository(Tasks);
+      const tasks = await tasksRepository.findBy({
+
+        
+          date: date,
+          families_id: id,
+        
+      })
+
+      if (!tasks) {
+        return res.status(404).json({
+          message: "tasks not found",
+        });
+      }
+
+      res.status(200).json({
+        tasks
+      
+
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Error while getting tasks",
+      });
+    }
+  }
 
   async create(
     req: Request<{}, {}, CreateTasksRequestBody>,

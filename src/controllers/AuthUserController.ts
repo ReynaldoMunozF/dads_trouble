@@ -62,6 +62,7 @@ export class AuthUserController {
               password: true,
               roles_id:true,
               families_id:true,
+              first_name:true,
             }
           });
           if(!user){
@@ -83,6 +84,7 @@ export class AuthUserController {
             user_id: user.id?.toString() as string,
             role: user.roles_id?.toString() as string,
             families_id: user.families_id?.toString() as string,
+            first_name: user.first_name
             
          };
 

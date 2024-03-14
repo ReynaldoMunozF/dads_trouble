@@ -27,10 +27,10 @@ export class Tasks extends BaseEntity {
   name_task!: string
 
   @Column()
-  task_date!: Date;
+  date!: Date;
   
-  // @Column()
-  // hour!: string
+  @Column()
+  hour!: string
  
   @Column()
   status?: string

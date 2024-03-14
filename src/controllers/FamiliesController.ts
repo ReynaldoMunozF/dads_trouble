@@ -114,7 +114,9 @@ export class FamiliesController implements Controller {
             id:true,
             users_id:true,
             name_task:true,
-            task_date:true,
+            date:true,
+            hour:true,
+            status:true,
           },
         },
       });
