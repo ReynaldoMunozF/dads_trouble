@@ -31,6 +31,7 @@ export class User {
 
   @Column()
   email!: string;
+  
 
   @Column()
   birthday?: Date;
