@@ -74,8 +74,9 @@ export class TasksController implements Controller {
   async getByIdAndDate(req: Request, res: Response): Promise<void | Response<any>> {
     try {
       const id = +req.params.id;
-     
       const dateString = req.params.date;
+      const typeTask = req.params.type;
+      
     const date = parse(dateString, 'yyyy-MM-dd', new Date());
       
       const tasksRepository = AppDataSource.getRepository(Tasks);
@@ -84,6 +85,38 @@ export class TasksController implements Controller {
         
           date: date,
           families_id: id,
+          type: typeTask,
+        
+      })
+
+      if (!tasks) {
+        return res.status(404).json({
+          message: "tasks not found",
+        });
+      }
+
+      res.status(200).json({
+        tasks
+      
+
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Error while getting tasks",
+      });
+    }
+  }
+  async getByIdAndType(req: Request, res: Response): Promise<void | Response<any>> {
+    try {
+      const id = +req.params.id;
+      const typeTask = req.params.type;
+      
+      
+      const tasksRepository = AppDataSource.getRepository(Tasks);
+      const tasks = await tasksRepository.findBy({
+
+          families_id: id,
+          type: typeTask,
         
       })
 

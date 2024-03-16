@@ -10,8 +10,6 @@ import {
 import { User } from "./User";
 import { Families } from "./families";
 
-
-
 @Entity("tasks")
 export class Tasks extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -24,16 +22,22 @@ export class Tasks extends BaseEntity {
   families_id!: number;
 
   @Column()
-  name_task!: string
+  name_task!: string;
 
   @Column()
   date!: Date;
+
+  @Column()
+  hour?: string;
+
+  @Column()
+  type!: string;
   
   @Column()
-  hour!: string
- 
+  url?: string;
+
   @Column()
-  status?: string
+  status?: string;
 
   @Column()
   active?: Number;
@@ -45,8 +49,4 @@ export class Tasks extends BaseEntity {
   @ManyToOne(() => Families, (families) => families.tasks)
   @JoinColumn({ name: "families_id" })
   families!: Families;
-
-
-
-
 }

@@ -35,6 +35,20 @@ export class CreateTasks1709715865847 implements MigrationInterface {
             name: "hour",
             type: "varchar",
             length: "255",
+            isNullable:true,
+          },
+          {
+            name: "url",
+            type: "varchar",
+            length: "255",
+            isNullable:true,
+          },
+
+          {
+            name: "type",
+            type: "enum",
+            enum: ["task", "shopping"],
+            default: '"task"',
           },
 
           {
