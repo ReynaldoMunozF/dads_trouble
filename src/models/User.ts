@@ -11,6 +11,7 @@ import {
 import { Families } from "./families";
 import { Roles } from "./roles";
 import { Tasks } from "./tasks";
+import { UserDetails } from "./UserDetails";
 
 @Entity("users")
 export class User {
@@ -30,7 +31,7 @@ export class User {
   last_name!: string;
 
   @Column()
-  email!: string;
+  email?: string;
   
 
   @Column()
@@ -50,6 +51,9 @@ export class User {
 
   @OneToMany(() => Tasks, (tasks) => tasks.user)
   tasks?: Tasks[];
+
+  @OneToMany(() => UserDetails, (userDetails) => userDetails.user)
+  userDetails?: UserDetails;
 
   @ManyToOne(() => Families, (families) => families.user)
   @JoinColumn({ name: "families_id" })

@@ -40,58 +40,6 @@ export class FamiliesController implements Controller {
       });
     }
   }
-  // async getAllComplete(
-  //   req: Request,
-  //   res: Response
-  // ): Promise<void | Response<any>> {
-  //   try {
-  //     const AppointmentRepository = AppDataSource.getRepository(Appointment);
-
-  //     let { page, skip } = req.query;
-
-  //     let currentPage = page ? +page : 1;
-  //     let itemsPerPage = skip ? +skip : 10;
-
-  //     const [allAppointments, count] = await AppointmentRepository.findAndCount(
-  //       {
-  //         skip: (currentPage - 1) * itemsPerPage,
-  //         take: itemsPerPage,
-
-  //         relations: {
-  //           user: true,
-  //           tattoo_artist: true,
-  //         },
-
-  //         select: {
-  //           id: true,
-  //           user_id: true,
-  //           tattoo_artist_id: true,
-  //           appointment_date: true,
-  //           hour: true,
-  //           schedules_id: true,
-  //           user: {
-  //             first_name: true,
-  //             last_name: true,
-  //           },
-  //           tattoo_artist: {
-  //             nickname: true,
-  //           },
-  //         },
-  //       }
-  //     );
-  //     res.status(200).json({
-  //       count,
-  //       skip: itemsPerPage,
-  //       page: currentPage,
-  //       results: allAppointments,
-  //     });
-  //   } catch (error) {
-  //     res.status(500).json({
-  //       message: "Error while getting appointments",
-  //     });
-  //   }
-  // }
-
   async getById(req: Request, res: Response): Promise<void | Response<any>> {
     try {
       const id = +req.params.id;
@@ -102,6 +50,7 @@ export class FamiliesController implements Controller {
         relations: {
           user: true,
           tasks:true,
+          
         },
         select: {
           family_name: true,
@@ -109,6 +58,7 @@ export class FamiliesController implements Controller {
             id:true,
             first_name: true,
             last_name: true,
+            
           },
           tasks: {
             id:true,

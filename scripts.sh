@@ -72,6 +72,7 @@ npx typeorm migration:create ./src/database/migrations/CreateUsers
 npx typeorm migration:create ./src/database/migrations/Createfamilies
 npx typeorm migration:create ./src/database/migrations/CreateTasks
 npx typeorm migration:create ./src/database/migrations/CreateRoles
+npx typeorm migration:create ./src/database/migrations/CreateUserDetail
 
 
 
@@ -79,7 +80,7 @@ npx typeorm migration:create ./src/database/migrations/CreateRoles
 npx typeorm-ts-node-commonjs migration:run -d ./src/database/data-source.ts 
 
 # Crear modelos
-npx typeorm entity:create ./src/models/Role
+npx typeorm entity:create ./src/models/UserDetails
 npx typeorm entity:create ./src/models/User
 npx typeorm entity:create ./src/models/Student
 npx typeorm entity:create ./src/models/Teacher

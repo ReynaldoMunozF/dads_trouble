@@ -1,11 +1,7 @@
 import express from "express";
 import {FamiliesController} from "../controllers/FamiliesController";
-// import { authArtist } from "../middleware/authArtist";
-// import { isAdmin } from "../middleware/isAdmin";
-// import { auth } from "../middleware/auth";
-// import { isSuperAdmin } from "../middleware/isSuperAdmin";
 
-// ----
+
 const router = express.Router();
 const familiesController = new FamiliesController();
 
